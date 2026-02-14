@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>أرض وساعة</title>
+    <style>
+        body { margin:0; background:black; }
+        #ساعة {
+            position:absolute; top:20px; left:20px;
+            color:white; font-size:3rem;
+            background:rgba(0,0,0,0.7); padding:10px 20px;
+            border-radius:30px;
+        }
+        #أرض {
+            width:100%; height:100vh;
+            background:url('https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57723/globe_west_2048.jpg');
+            background-size:cover;
+            background-position:center;
+        }
+    </style>
+</head>
+<body>
+    <div id="ساعة"></div>
+    <div id="أرض"></div>
+    <script>
+        function وقت() {
+            let d = new Date();
+            let h = d.getHours().toString().padStart(2,'0');
+            let m = d.getMinutes().toString().padStart(2,'0');
+            let s = d.getSeconds().toString().padStart(2,'0');
+            document.getElementById('ساعة').innerHTML = h + ':' + m + ':' + s;
+        }
+        setInterval(وقت, 1000);
+        وقت();
+    </script>
+</body>
+</html>
