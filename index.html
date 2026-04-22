@@ -1,47 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>ساعة الأرض</title>
-    <style>
-        body { 
-            margin: 0; 
-            background: black; 
-        }
-        #clock {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            font-size: 3rem;
-            background: rgba(0,0,0,0.7);
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-family: Arial;
-        }
-        #earth {
-            width: 100%;
-            height: 100vh;
-            background-image: url('https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57723/globe_west_2048.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
-</head>
-<body>
-    <div id="clock"></div>
-    <div id="earth"></div>
+<meta charset="UTF-8">
+<title>حاسبة الأرباح</title>
 
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('clock').innerHTML = hours + ':' + minutes + ':' + seconds;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: rgba(0,0,0,0.6);
+  padding: 25px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 350px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.calc {
+  background: #00c9ff;
+  color: black;
+}
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.result {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h2>💰 حاسبة الأرباح</h2>
+
+  <input type="number" id="buy" placeholder="ثمن الشراء">
+  <input type="number" id="sell" placeholder="ثمن البيع">
+  <input type="number" id="ship" placeholder="تكلفة التوصيل">
+
+  <button class="calc" onclick="calcProfit()">احسب الربح</button>
+
+  <div class="result" id="result">الربح: --</div>
+
+  <button class="whatsapp" onclick="sendWhats()">إرسال عبر واتساب</button>
+</div>
+
+<script>
+let profitValue = 0;
+
+function calcProfit() {
+  let buy = parseFloat(document.getElementById("buy").value) || 0;
+  let sell = parseFloat(document.getElementById("sell").value) || 0;
+  let ship = parseFloat(document.getElementById("ship").value) || 0;
+
+  profitValue = sell - buy - ship;
+
+  document.getElementById("result").innerText = "الربح: " + profitValue + " درهم";
+}
+
+function sendWhats() {
+  let msg = "ربحي هو: " + profitValue + " درهم 💰";
+  let url = "https://wa.me/?text=" + encodeURIComponent(msg);
+  window.open(url, "_blank");
+}
+</script>
+
 </body>
 </html>
