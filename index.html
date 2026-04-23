@@ -1,149 +1,42 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>حاسبة الأرباح</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>احسب أرباحك</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: url('hero.png') center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: white;
-}
+  <!-- ربط manifest -->
+  <link rel="manifest" href="manifest.json">
 
-/* صندوق الحاسبة */
-.container {
-  background: rgba(0,0,0,0.7);
-  padding: 25px;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 350px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  animation: fadeIn 0.6s ease;
-}
+  <!-- لون المتصفح -->
+  <meta name="theme-color" content="#4CAF50">
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 10px;
-  border: none;
-  font-size: 16px;
-}
-
-/* زر الحساب */
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-}
-
-/* زر احسب */
-.calc {
-  background: #4CAF50;
-  color: white;
-}
-
-/* زر واتساب */
-.whatsapp {
-  background: #25D366;
-  color: white;
-}
-
-/* النتيجة */
-.result {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-/* ملاحظة */
-.note {
-  font-size: 13px;
-  text-align: center;
-  opacity: 0.8;
-  margin-top: 10px;
-}
-</style>
-
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #4CAF50;
+      color: white;
+      font-size: 22px;
+      padding: 15px 25px;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="container">
-  <h2>💰 حاسبة الأرباح</h2>
-
-  <input type="number" id="buy" placeholder="ثمن شراء المنتج">
-  <input type="number" id="sell" placeholder="ثمن البيع للزبون">
-  <input type="number" id="ship" placeholder="تكلفة التوصيل">
-
-  <button class="calc" onclick="calcProfit()">احسب الربح</button>
-
-  <div class="result" id="result">الربح: --</div>
-
-  <button class="whatsapp" onclick="sendwhats()">📲 إرسال عبر واتساب</button>
-
-  <div class="note">
-    احسب أرباحك وتواصل معنا لبدء عملك الآن
-  </div>
-</div>
-
-<script>
-let profitValue = 0;
-
-function calcProfit() {
-  let buy = parseFloat(document.getElementById("buy").value) || 0;
-  let sell = parseFloat(document.getElementById("sell").value) || 0;
-  let ship = parseFloat(document.getElementById("ship").value) || 0;
-
-  profitValue = sell - buy - ship;
-
-  document.getElementById("result").innerText = "الربح: " + profitValue + " درهم";
-}
-
-function sendwhats() {
-  if (profitValue === 0) {
-    alert("احسب الربح أولاً");
-    return;
-  }
-
-  let message =
-    "🔥 مرحبا\n" +
-    "تم حساب الأرباح:\n" +
-    "💰 الربح: " + profitValue + " درهم\n\n" +
-    "أريد بدء العمل معك";
-
-  let phone = "212XXXXXXXXX"; // ضع رقمك هنا بدون +
-  let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-
-  window.open(url, "_blank");
-}
-</script>
-
-</body>
-</html>
+  <!-- زر واتساب -->
+  <a class="btn" href="https://wa.me/message/ODDMAKTZOMP2N1">
+    💰 اح
