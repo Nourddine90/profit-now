@@ -7,140 +7,142 @@
 
 <style>
 body {
-    margin: 0;
-    font-family: Arial;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: white;
+  margin: 0;
+  font-family: Arial;
+  background: url('hero.png') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
 }
 
+/* صندوق الحاسبة */
 .container {
-    background: rgba(0,0,0,0.7);
-    padding: 25px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 350px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    animation: fadeIn 0.6s ease;
+  background: rgba(0,0,0,0.7);
+  padding: 25px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 350px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  animation: fadeIn 0.6s ease;
 }
 
 @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 input {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 10px;
-    border: none;
-    font-size: 16px;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
 }
 
+/* زر الحساب */
 button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
-    transform: scale(1.03);
+  transform: scale(1.05);
 }
 
+/* زر احسب */
 .calc {
-    background: #00c9ff;
-    color: black;
+  background: #4CAF50;
+  color: white;
 }
 
+/* زر واتساب */
 .whatsapp {
-    background: #25D366;
-    color: white;
+  background: #25D366;
+  color: white;
 }
 
+/* النتيجة */
 .result {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 20px;
-    font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
+/* ملاحظة */
 .note {
-    font-size: 13px;
-    text-align: center;
-    opacity: 0.8;
-    margin-top: 10px;
+  font-size: 13px;
+  text-align: center;
+  opacity: 0.8;
+  margin-top: 10px;
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="container">
-    <h2>💰 حاسبة الأرباح</h2>
+  <h2>💰 حاسبة الأرباح</h2>
 
-    <input type="number" id="buy" placeholder="ثمن شراء المنتج">
-    <input type="number" id="sell" placeholder="ثمن البيع للزبون">
-    <input type="number" id="ship" placeholder="تكلفة التوصيل">
+  <input type="number" id="buy" placeholder="ثمن شراء المنتج">
+  <input type="number" id="sell" placeholder="ثمن البيع للزبون">
+  <input type="number" id="ship" placeholder="تكلفة التوصيل">
 
-    <button class="calc" onclick="calcProfit()">احسب الربح</button>
+  <button class="calc" onclick="calcProfit()">احسب الربح</button>
 
-    <div class="result" id="result">الربح: --</div>
+  <div class="result" id="result">الربح: --</div>
 
-    <button class="whatsapp" onclick="sendWhats()">📲 إرسال عبر واتساب</button>
+  <button class="whatsapp" onclick="sendwhats()">📲 إرسال عبر واتساب</button>
 
-    <div class="note">
-        احسب أرباحك وتواصل معنا لنريك كيف تربح فعلاً
-    </div>
+  <div class="note">
+    احسب أرباحك وتواصل معنا لبدء عملك الآن
+  </div>
 </div>
 
 <script>
-
 let profitValue = 0;
 
 function calcProfit() {
-    let buy = parseFloat(document.getElementById("buy").value) || 0;
-    let sell = parseFloat(document.getElementById("sell").value) || 0;
-    let ship = parseFloat(document.getElementById("ship").value) || 0;
+  let buy = parseFloat(document.getElementById("buy").value) || 0;
+  let sell = parseFloat(document.getElementById("sell").value) || 0;
+  let ship = parseFloat(document.getElementById("ship").value) || 0;
 
-    profitValue = sell - buy - ship;
+  profitValue = sell - buy - ship;
 
-    document.getElementById("result").innerText = "الربح: " + profitValue + " درهم";
+  document.getElementById("result").innerText = "الربح: " + profitValue + " درهم";
 }
 
-function sendWhats() {
+function sendwhats() {
+  if (profitValue === 0) {
+    alert("احسب الربح أولاً");
+    return;
+  }
 
-    if (profitValue === 0) {
-        alert("احسب الربح أولاً");
-        return;
-    }
-
-    let message =
+  let message =
     "🔥 مرحبا\n" +
-    "قمت بحساب الأرباح ووجدت:\n" +
+    "تم حساب الأرباح:\n" +
     "💰 الربح: " + profitValue + " درهم\n\n" +
-    "أريد معرفة كيف أبدأ وأحقق أرباح مثلك";
+    "أريد بدء العمل معك";
 
-    let phone = "212711366556"; // رقمك بدون +
+  let phone = "212XXXXXXXXX"; // ضع رقمك هنا بدون +
+  let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
-    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-
-    window.open(url, "_blank");
+  window.open(url, "_blank");
 }
-
 </script>
 
 </body>
