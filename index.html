@@ -2,7 +2,10 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>حاسبة الأرباح</title>
+
+<link rel="manifest" href="manifest.json">
 
 <style>
 body {
@@ -22,7 +25,6 @@ body {
     border-radius: 20px;
     width: 90%;
     max-width: 350px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 h2 {
@@ -35,7 +37,6 @@ input {
     margin: 8px 0;
     border-radius: 10px;
     border: none;
-    font-size: 16px;
 }
 
 button {
@@ -44,13 +45,11 @@ button {
     margin-top: 10px;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
     cursor: pointer;
 }
 
 .calc {
     background: #00c9ff;
-    color: black;
 }
 
 .whatsapp {
@@ -62,7 +61,6 @@ button {
     text-align: center;
     margin-top: 15px;
     font-size: 20px;
-    font-weight: bold;
 }
 </style>
 
@@ -87,7 +85,6 @@ button {
 </div>
 
 <script>
-
 let profitValue = 0;
 
 function calcProfit() {
@@ -101,12 +98,14 @@ function calcProfit() {
 }
 
 function sendWhats() {
-
     let message = "مرحبا، الربح هو: " + profitValue + " درهم";
-
-    window.open("https://wa.me/message/ODDMAKTZOMP2N1?text=" + encodeURIComponent(message), "_blank");
+    window.open("https://wa.me/message/ODDMAKTZOMP2N1?text=" + encodeURIComponent(message));
 }
 
+// 🔥 مهم للتطبيق
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
 </script>
 
 </body>
