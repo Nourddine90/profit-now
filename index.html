@@ -1,28 +1,147 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>حاسبة الأرباح</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حاسبة الأرباح</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.container {
+    background: rgba(0,0,0,0.7);
+    padding: 25px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+.calc {
+    background: #00c9ff;
+    color: black;
+}
+
+.whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.result {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.note {
+    font-size: 13px;
+    text-align: center;
+    opacity: 0.8;
+    margin-top: 10px;
+}
+</style>
 </head>
+
 <body>
 
 <div class="container">
-  <h1>💰 حاسبة الأرباح</h1>
+    <h2>💰 حاسبة الأرباح</h2>
 
-  <input type="number" id="capital" placeholder="رأس المال (درهم)">
-  <input type="number" id="profit" placeholder="نسبة الربح %">
+    <input type="number" id="buy" placeholder="ثمن شراء المنتج">
+    <input type="number" id="sell" placeholder="ثمن البيع للزبون">
+    <input type="number" id="ship" placeholder="تكلفة التوصيل">
 
-  <button onclick="calculate()">احسب</button>
+    <button class="calc" onclick="calcProfit()">احسب الربح</button>
 
-  <h2 id="result"></h2>
+    <div class="result" id="result">الربح: --</div>
 
-  <a href="https://wa.me/message/ODDMAKTZOMP2N1" target="_blank" class="whatsapp">
-    تواصل معنا على واتساب
-  </a>
+    <button class="whatsapp" onclick="sendWhats()">📲 إرسال عبر واتساب</button>
+
+    <div class="note">
+        احسب أرباحك وتواصل معنا لنريك كيف تربح فعلاً
+    </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+
+let profitValue = 0;
+
+function calcProfit() {
+    let buy = parseFloat(document.getElementById("buy").value) || 0;
+    let sell = parseFloat(document.getElementById("sell").value) || 0;
+    let ship = parseFloat(document.getElementById("ship").value) || 0;
+
+    profitValue = sell - buy - ship;
+
+    document.getElementById("result").innerText = "الربح: " + profitValue + " درهم";
+}
+
+function sendWhats() {
+
+    if (profitValue === 0) {
+        alert("احسب الربح أولاً");
+        return;
+    }
+
+    let message =
+    "🔥 مرحبا\n" +
+    "قمت بحساب الأرباح ووجدت:\n" +
+    "💰 الربح: " + profitValue + " درهم\n\n" +
+    "أريد معرفة كيف أبدأ وأحقق أرباح مثلك";
+
+    let phone = "21211366556"; // رقمك بدون +
+
+    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+}
+
+</script>
+
 </body>
 </html>
