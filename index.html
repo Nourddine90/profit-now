@@ -17,16 +17,17 @@ body {
 }
 
 .container {
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.7);
     padding: 25px;
     border-radius: 20px;
     width: 90%;
     max-width: 350px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    text-align: center;
 }
 
 h2 {
-    text-align: center;
+    margin-bottom: 15px;
 }
 
 input {
@@ -58,23 +59,15 @@ button {
     color: white;
 }
 
-.donate {
+.paypal {
     background: #ff4d6d;
     color: white;
 }
 
 .result {
-    text-align: center;
     margin-top: 15px;
     font-size: 20px;
     font-weight: bold;
-}
-
-.note {
-    text-align:center;
-    font-size:14px;
-    margin-top:10px;
-    opacity:0.8;
 }
 </style>
 
@@ -97,12 +90,13 @@ button {
         إرسال عبر واتساب
     </button>
 
-    <p class="note">إذا ساعدك التطبيق، دعمك يساعدنا نطوروه 🙏</p>
+    <p style="margin-top:10px; font-size:14px;">
+        🙏 إذا ساعدك التطبيق، دعمك يساعدنا نطوروه
+    </p>
 
-    <button class="donate" onclick="donate()">
-        💖 دعم التطبيق
+    <button class="paypal" onclick="supportApp()">
+        دعم التطبيق 💖
     </button>
-
 </div>
 
 <script>
@@ -128,10 +122,10 @@ function sendWhats() {
 
     let message = "مرحبا، الربح هو: " + profitValue + " درهم";
 
-    window.open("https://wa.me/?text=" + encodeURIComponent(message), "_blank");
+    window.open("https://wa.me/212711366556?text=" + encodeURIComponent(message), "_blank");
 }
 
-function donate() {
+function supportApp() {
     window.open("https://paypal.me/mixnourddine", "_blank");
 }
 
