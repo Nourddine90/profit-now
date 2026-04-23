@@ -58,11 +58,23 @@ button {
     color: white;
 }
 
+.donate {
+    background: #ff4d6d;
+    color: white;
+}
+
 .result {
     text-align: center;
     margin-top: 15px;
     font-size: 20px;
     font-weight: bold;
+}
+
+.note {
+    text-align:center;
+    font-size:14px;
+    margin-top:10px;
+    opacity:0.8;
 }
 </style>
 
@@ -84,11 +96,18 @@ button {
     <button class="whatsapp" onclick="sendWhats()">
         إرسال عبر واتساب
     </button>
+
+    <p class="note">إذا ساعدك التطبيق، دعمك يساعدنا نطوروه 🙏</p>
+
+    <button class="donate" onclick="donate()">
+        💖 دعم التطبيق
+    </button>
+
 </div>
 
 <script>
 
-let profitValue = null; // 👈 مهم
+let profitValue = null;
 
 function calcProfit() {
     let buy = parseFloat(document.getElementById("buy").value) || 0;
@@ -102,15 +121,18 @@ function calcProfit() {
 
 function sendWhats() {
 
-    // 🚫 منع الإرسال قبل الحساب
     if (profitValue === null) {
-        alert("⚠️ احسب الربح أولاً");
+        alert("⚠ احسب الربح أولاً");
         return;
     }
 
     let message = "مرحبا، الربح هو: " + profitValue + " درهم";
 
     window.open("https://wa.me/?text=" + encodeURIComponent(message), "_blank");
+}
+
+function donate() {
+    window.open("https://paypal.me/mixnourddine", "_blank");
 }
 
 </script>
