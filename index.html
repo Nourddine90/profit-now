@@ -2,48 +2,27 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>احسب أرباحك</title>
-
+  <title>حاسبة الأرباح</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
-
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .bg {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #6bdc57;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 30px;
-      font-size: 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
 </head>
-
 <body>
 
-<img src="icon-512.png" class="bg">
+<div class="container">
+  <h1>💰 حاسبة الأرباح</h1>
 
-<a class="btn" href="https://wa.me/message/ODDMAKTZOMP2N1">
-  احسب أرباحك الآن 💰
-</a>
+  <input type="number" id="capital" placeholder="رأس المال (درهم)">
+  <input type="number" id="profit" placeholder="نسبة الربح %">
 
+  <button onclick="calculate()">احسب</button>
+
+  <h2 id="result"></h2>
+
+  <a href="https://wa.me/message/ODDMAKTZOMP2N1" target="_blank" class="whatsapp">
+    تواصل معنا على واتساب
+  </a>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
